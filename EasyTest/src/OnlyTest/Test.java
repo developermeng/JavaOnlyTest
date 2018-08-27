@@ -5,7 +5,7 @@ class sort{
 
     public sort()
     {
-
+        System.out.println("sort class!");
     }
 
     int bubble(int []nums)
