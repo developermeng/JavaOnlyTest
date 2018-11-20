@@ -1,5 +1,7 @@
 package OnlyTest;
 import java.nio.ByteOrder;
+import java.util.EmptyStackException;
+import java.util.Stack;
 
 //sort class
 class sort{
@@ -35,6 +37,40 @@ class sort{
     }
 }
 
+class StackTest{
+
+    void showpush(Stack<Integer> st, int a){
+        st.push(new Integer(a));
+        System.out.println("input(" + a + ")");
+        System.out.println("stack is : " + st);
+    }
+
+    void  showpop(Stack<Integer> st)
+    {
+        System.out.print("pop ->");
+        Integer a = (Integer)st.pop();
+        System.out.println(a);
+        System.out.println("stack is :" + st);
+    }
+
+    void stacktest()
+    {
+        Stack<Integer> st = new Stack<Integer>();
+        showpush(st, 11);
+        showpush(st, 22);
+        showpush(st, 77);
+        showpop(st);
+        showpop(st);
+        try{
+            showpop(st);
+        }catch (EmptyStackException e){
+            System.out.println("no elements!");
+        }
+    }
+
+
+}
+
 
 
 public class Test {
@@ -52,6 +88,9 @@ public class Test {
 
         //Class practice
         Father1 F1 = new Father1();
+
+        StackTest t = new StackTest();
+        t.stacktest();
 
 
     }
