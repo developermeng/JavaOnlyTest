@@ -1,8 +1,6 @@
 package OnlyTest;
 import java.nio.ByteOrder;
 
-
-
 //sort class
 class sort{
 
@@ -46,9 +44,15 @@ public class Test {
             System.out.println("big endian");
         else System.out.println("little endian");
 
+
+        //Bubble Algorithm test
         sort A = new sort();
         int[] SortNums = {22, 11, 0, 26, 112};
         A.bubble(SortNums);
+
+        //Class practice
+        Father1 F1 = new Father1();
+
 
     }
 }
