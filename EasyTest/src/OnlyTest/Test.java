@@ -37,6 +37,14 @@ class sort{
     }
 }
 
+//Exception Test
+class Myexception extends Exception{
+    public Myexception(){}
+    public Myexception(String msg){
+        super(msg);
+    }
+}
+
 
 //stack test
 class StackTest{
@@ -55,7 +63,7 @@ class StackTest{
         System.out.println("stack is :" + st);
     }
 
-    void stacktest()
+    void stacktest  ()throws Myexception
     {
         Stack<Integer> st = new Stack<Integer>();
         showpush(st, 11);
@@ -63,11 +71,16 @@ class StackTest{
         showpush(st, 77);
         showpop(st);
         showpop(st);
+        showpop(st);
+
         try{
             showpop(st);
-        }catch (EmptyStackException e){
-            System.out.println("no elements!");
+        }catch (EmptyStackException e)
+        {
+            System.out.println("no elements");
         }
+
+
     }
 
 
@@ -76,8 +89,7 @@ class StackTest{
 
 
 public class Test {
-    public static void main(String []args)
-    {
+    public static void main(String []args) throws EmptyStackException, Myexception {
         if(ByteOrder.nativeOrder()!=ByteOrder.LITTLE_ENDIAN)
             System.out.println("big endian");
         else System.out.println("little endian");
