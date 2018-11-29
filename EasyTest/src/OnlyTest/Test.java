@@ -5,12 +5,10 @@ import java.util.Stack;
 
 //sort class
 class sort{
-
     public sort()
     {
         System.out.println("sort class!");
     }
-
     int bubble(int []nums)
     {
         int temp;
@@ -27,12 +25,10 @@ class sort{
                 }
             }
         }
-
         for(int tnum : nums)
         {
             System.out.print(tnum + " ");
         }
-
         return 0;
     }
 }
@@ -63,29 +59,64 @@ class StackTest{
         System.out.println("stack is :" + st);
     }
 
+    void showpeak(Stack<Integer> st)
+    {
+        System.out.print("top num is:");
+        Integer n = (Integer)st.peek();
+        System.out.println(n);
+        System.out.println("stack is:" + st);
+    }
+
     void stacktest  ()throws Myexception
     {
         Stack<Integer> st = new Stack<Integer>();
         showpush(st, 11);
         showpush(st, 22);
         showpush(st, 77);
+        showpush(st, 32);
         showpop(st);
         showpop(st);
         showpop(st);
 
         try{
-            showpop(st);
+            showpeak(st);
         }catch (EmptyStackException e)
         {
             System.out.println("no elements");
         }
-
-
     }
-
 
 }
 
+class MyStack1{
+    private Stack<Integer> stackData;
+    private Stack<Integer> stackMin;
+
+    public int getmin(){
+        if(this.stackMin.isEmpty()){
+            throw new RuntimeException("Your stack is empty");
+        }else{
+            return this.stackMin.peek();
+        }
+    }
+
+    public MyStack1()
+    {
+        this.stackData = new Stack<Integer>();
+        this.stackMin = new Stack<Integer>();
+    }
+
+    public void push(int newNum)
+    {
+        if(this.stackMin.isEmpty()){
+            this.stackMin.push(newNum);
+        }else if (newNum <= this.getmin()){
+                this.stackMin.push(newNum);
+        }
+        this.stackData.push(newNum);
+    }
+
+}
 
 
 public class Test {
