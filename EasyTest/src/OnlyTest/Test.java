@@ -132,18 +132,14 @@ class MyStack1{
 
 public class Test {
     public static void main(String []args) throws EmptyStackException, Myexception {
-        if(ByteOrder.nativeOrder()!=ByteOrder.LITTLE_ENDIAN)
-            System.out.println("big endian");
-        else System.out.println("little endian");
-
 
         //Bubble Algorithm test
-        sort A = new sort();
-        int[] SortNums = {22, 11, 0, 26, 112};
-        A.bubble(SortNums);
+//        sort A = new sort();
+//        int[] SortNums = {22, 11, 0, 26, 112};
+//        A.bubble(SortNums);
 
         //Class practice
-        Father1 F1 = new Father1();
+        //Father1 F1 = new Father1();
 
         StackTest t = new StackTest();
         t.stacktest();
