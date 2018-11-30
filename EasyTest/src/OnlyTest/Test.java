@@ -116,6 +116,17 @@ class MyStack1{
         this.stackData.push(newNum);
     }
 
+    public int pop(){
+        if(this.stackData.isEmpty()){
+            throw new RuntimeException("Your stack is empty");
+        }
+        int value = this.stackData.pop();
+        if(value == this.getmin()){
+            this.stackMin.pop();
+        }
+        return value;
+    }
+
 }
 
 
