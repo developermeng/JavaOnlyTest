@@ -100,6 +100,15 @@ class MyStack1{
         }
     }
 
+    public Stack<Integer> getStackData() {
+        return stackData;
+    }
+
+    public Stack<Integer> getStackMin(){
+        return stackMin;
+    }
+
+
     public MyStack1()
     {
         this.stackData = new Stack<Integer>();
@@ -143,7 +152,37 @@ public class Test {
 
         StackTest t = new StackTest();
         t.stacktest();
+        int temp = 0;
 
+        System.out.println("\n\nSmartStack Show\n");
+
+        MyStack1 SmartSt = new MyStack1();
+
+        SmartSt.push(11);
+        temp = SmartSt.getmin();
+        System.out.println("min of SmartStack:" + temp);
+        SmartSt.push(33);
+        SmartSt.push(21);
+        SmartSt.push(2);
+        SmartSt.push(13);
+        SmartSt.push(0);
+
+        System.out.println("SmartStack : " + SmartSt.getStackData());
+        temp = SmartSt.getmin();
+        System.out.println("min of SmartStack:" + temp);
+
+        SmartSt.pop();
+
+        System.out.println("SmartStack : " + SmartSt.getStackData());
+        temp = SmartSt.getmin();
+        System.out.println("min of SmartStack:" + temp);
+
+        SmartSt.pop();
+        SmartSt.pop();
+
+        System.out.println("SmartStack : " + SmartSt.getStackData());
+        temp = SmartSt.getmin();
+        System.out.println("min of SmartStack:" + temp);
 
     }
 }
