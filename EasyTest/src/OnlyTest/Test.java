@@ -204,9 +204,18 @@ public class Test {
     public Obj GetAObj(){
         return aObj;
     }
+    public int getaInt(){
+        return aInt;
+    }
 
-
-
+    public void changeObj(Obj inObj)
+    {
+        inObj.setStr("change value!");
+    }
+    public void changeInt(int inInt)
+    {
+        inInt = 1;
+    }
 
 
 
