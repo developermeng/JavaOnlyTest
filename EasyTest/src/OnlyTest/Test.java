@@ -41,7 +41,6 @@ class Myexception extends Exception{
     }
 }
 
-
 //stack test
 class StackTest{
 
@@ -88,56 +87,57 @@ class StackTest{
 
 }
 
+//minNum by Stack push easy pop difficult
 class MyStack1{
-    private Stack<Integer> stackData;
-    private Stack<Integer> stackMin;
-
-    public int getmin(){
-        if(this.stackMin.isEmpty()){
-            throw new RuntimeException("Your stack is empty");
-        }else{
-            return this.stackMin.peek();
+    private Stack<Integer> stackData ;
+    private Stack<Integer> stackDataMin;
+    public MyStack1(){
+        stackData = new Stack<>();
+        stackDataMin = new Stack<>();
+    }
+    public void push(int newNum){
+        if(this.stackDataMin.empty())
+        {
+            this.stackData.push(newNum);
+            this.stackDataMin.push(newNum);
+        } else {
+            this.stackData.push(newNum);
+            if(newNum < this.stackDataMin.peek())
+            {
+                this.stackDataMin.push(newNum);
+            }
         }
     }
-
-    public Stack<Integer> getStackData() {
-        return stackData;
-    }
-
-    public Stack<Integer> getStackMin(){
-        return stackMin;
-    }
-
-
-    public MyStack1()
+    public void pop()
     {
-        this.stackData = new Stack<Integer>();
-        this.stackMin = new Stack<Integer>();
+        if(this.stackData.empty()){
+            throw new RuntimeException("Stack is empty!");
+        }
+        else{
+            if(this.stackData.peek() == this.stackDataMin.peek())
+            {
+                this.stackDataMin.pop();
+            }
+            this.stackData.pop();
+        }
     }
-
-    public void push(int newNum)
+    public int peek()
     {
-        if(this.stackMin.isEmpty()){
-            this.stackMin.push(newNum);
-        }else if (newNum <= this.getmin()){
-                this.stackMin.push(newNum);
+        if(this.stackData.empty()){
+            throw new RuntimeException("Stack is empty!");
         }
-        this.stackData.push(newNum);
+        return this.stackData.peek();
     }
 
-    public int pop(){
-        if(this.stackData.isEmpty()){
-            throw new RuntimeException("Your stack is empty");
+    public int MinNum(){
+        if(this.stackDataMin.empty())
+        {
+            throw new RuntimeException("Stack is empty!");
         }
-        int value = this.stackData.pop();
-        if(value == this.getmin()){
-            this.stackMin.pop();
-        }
-        return value;
+        return this.stackDataMin.peek();
     }
-
 }
-
+//minNum by Stack push difficult pop easy
 class MyStack2{
     private Stack<Integer> stackData;
     private Stack<Integer> stackMin;
@@ -185,67 +185,67 @@ class MyStack2{
 
 }
 
+class Obj{
+    private String str = "default name";
+    public void setStr(String str){
+        this.str = str;
+    }
+    public String toString()
+    {
+        return str;
+    }
+}
+
 
 public class Test {
+
+    private Obj aObj = new Obj();
+    private int aInt = 0;
+    public Obj GetAObj(){
+        return aObj;
+    }
+
+
+
+
+
+
     public static void main(String []args) throws EmptyStackException, Myexception {
 
         //Bubble Algorithm test
 //        sort A = new sort();
 //        int[] SortNums = {22, 11, 0, 26, 112};
 //        A.bubble(SortNums);
-
-        //Class practice
-        //Father1 F1 = new Father1();
-
-//        StackTest t = new StackTest();
-//        t.stacktest();
-//        int temp = 0;
-//
-//        System.out.println("\n\nSmartStack Show\n");
-//
-//        MyStack1 SmartSt = new MyStack1();
-//
-//        SmartSt.push(11);
-//        temp = SmartSt.getmin();
-//        System.out.println("min of SmartStack:" + temp);
-//        SmartSt.push(33);
-//        SmartSt.push(21);
-//        SmartSt.push(2);
-//        SmartSt.push(13);
-//        SmartSt.push(0);
-//
-//        System.out.println("SmartStack : " + SmartSt.getStackData());
-//        temp = SmartSt.getmin();
-//        System.out.println("min of SmartStack:" + temp);
-//
-//        SmartSt.pop();
-//
-//        System.out.println("SmartStack : " + SmartSt.getStackData());
-//        temp = SmartSt.getmin();
-//        System.out.println("min of SmartStack:" + temp);
-//
-//        SmartSt.pop();
-//        SmartSt.pop();
-//
-//        System.out.println("SmartStack : " + SmartSt.getStackData());
-//        temp = SmartSt.getmin();
-//        System.out.println("min of SmartStack:" + temp);
-        MyStack2 smartSt2 = new MyStack2();
-        smartSt2.push(11);
-        smartSt2.push(1);
-        smartSt2.push(2);
-        smartSt2.push(25);
-        smartSt2.push(1);
-        System.out.println("StackData: " + smartSt2.getStackData());
-        System.out.println("MinData: " + smartSt2.getStackMin());
-        System.out.println("MinNum: " + smartSt2.getMin());
-        smartSt2.push(-1);
-        smartSt2.push(0);
-        System.out.println("StackData: " + smartSt2.getStackData());
-        System.out.println("MinData: " + smartSt2.getStackMin());
-        System.out.println("MinNum: " + smartSt2.getMin());
+        int NumTemp;
 
 
+
+
+
+
+
+
+
+//
+//        Father1 test = new Father1();
+//        test.PackorUnpackTest();
+//        MyThread mt = new MyThread();
+//        Thread t1 = new Thread(mt,"t1");
+//        Thread t2 = new Thread(mt, "t2");
+//        Thread t3 = new Thread(mt,"t3");
+//        Thread t4 = new Thread(mt, "t4");
+//        Thread t11 = new Thread(mt,"t11");
+//        Thread t21 = new Thread(mt, "t21");
+//        Thread t31 = new Thread(mt,"t31");
+//        Thread t41 = new Thread(mt, "t41");
+//        t1.start();
+//        t2.start();
+//        t3.start();
+//        t4.start();
+//        t11.start();
+//        t21.start();
+//        t31.start();
+//        t41.start();
     }
 }
 
