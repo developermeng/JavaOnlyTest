@@ -2,6 +2,7 @@ package OnlyTest;
 import java.nio.ByteOrder;
 import java.util.EmptyStackException;
 import java.util.Stack;
+import java.lang.StringBuffer;
 
 //sort class
 class sort{
@@ -185,76 +186,38 @@ class MyStack2{
 
 }
 
-class Obj{
-    private String str = "default name";
-    public void setStr(String str){
-        this.str = str;
+class OuterClass{
+    int a;
+    class InnerClass1{
+        public int a =  1;
     }
-    public String toString()
-    {
-        return str;
+}
+class A{
+    public int num;
+    A(){
     }
 }
 
 
+
+
 public class Test {
-
-    private Obj aObj = new Obj();
-    private int aInt = 0;
-    public Obj GetAObj(){
-        return aObj;
-    }
-    public int getaInt(){
-        return aInt;
-    }
-
-    public void changeObj(Obj inObj)
-    {
-        inObj.setStr("change value!");
-    }
-    public void changeInt(int inInt)
-    {
-        inInt = 1;
-    }
-
-
 
     public static void main(String []args) throws EmptyStackException, Myexception {
 
-        //Bubble Algorithm test
-//        sort A = new sort();
-//        int[] SortNums = {22, 11, 0, 26, 112};
-//        A.bubble(SortNums);
+
         int NumTemp;
 
+        StringBuffer s = new StringBuffer("ssss");
+        StringBuffer ss = new StringBuffer("ssss");
+        String temp;
+
+        System.out.println(s.equals(ss));
 
 
 
 
 
-
-
-
-//
-//        Father1 test = new Father1();
-//        test.PackorUnpackTest();
-//        MyThread mt = new MyThread();
-//        Thread t1 = new Thread(mt,"t1");
-//        Thread t2 = new Thread(mt, "t2");
-//        Thread t3 = new Thread(mt,"t3");
-//        Thread t4 = new Thread(mt, "t4");
-//        Thread t11 = new Thread(mt,"t11");
-//        Thread t21 = new Thread(mt, "t21");
-//        Thread t31 = new Thread(mt,"t31");
-//        Thread t41 = new Thread(mt, "t41");
-//        t1.start();
-//        t2.start();
-//        t3.start();
-//        t4.start();
-//        t11.start();
-//        t21.start();
-//        t31.start();
-//        t41.start();
     }
 }
 
