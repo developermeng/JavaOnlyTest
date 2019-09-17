@@ -10,7 +10,7 @@ class sort{
     {
         System.out.println("sort class!");
     }
-    int bubble(int []nums)
+    public int bubble(int []nums)
     {
         int temp;
         System.out.println("we have " + nums.length + " numbers");
@@ -32,6 +32,39 @@ class sort{
         }
         return 0;
     }
+
+    public void quickSort(int []nums , int l, int r){
+        if(l > r){
+            return;
+        }
+        int left = l;
+        int right = r;
+        int flag = nums[l];
+        int temp;
+
+        while (right > left){
+            while (right > left && nums[right] >= flag)
+            {
+                right--;
+            }
+            nums[left] = nums[right];
+
+            while (right > left && (nums[left] <= flag) )
+            {
+                left++;
+            }
+            nums[right] = nums[left];
+        }
+
+
+        nums[left] = flag;
+
+
+        quickSort(nums, l, left - 1);
+        quickSort(nums,left + 1, r);
+
+    }
+
 }
 
 //Exception Test
@@ -194,7 +227,19 @@ class OuterClass{
 }
 class A{
     public int num;
+
+    private int a = 3;
+    static int b = 4;
+
+    final int c = 5;
+
+    int tt(){
+        final int i = 1;
+        return i;
+    }
+
     A(){
+        b = 6;
     }
 }
 
@@ -203,20 +248,30 @@ class A{
 
 public class Test {
 
+
+
     public static void main(String []args) throws EmptyStackException, Myexception {
 
-
         int NumTemp;
+        int []nums = {1,3,12,0,2,9,4,1};
 
         StringBuffer s = new StringBuffer("ssss");
         StringBuffer ss = new StringBuffer("ssss");
         String temp;
 
-        System.out.println(s.equals(ss));
+        System.out.println(A.b);
 
 
 
 
+
+
+        //System.out.println(s == ss);
+
+        new sort().quickSort(nums, 0, nums.length - 1);
+        for(int i:nums){
+            System.out.print(i + " ");
+        }
 
     }
 }

@@ -1,27 +1,91 @@
 package OnlyTest;
 import java.sql.*;
 import java.util.Stack;
+import java.util.*;
+
 
 public class Father1 {
 
-    public Father1()
-    {
-        System.out.println("\nEasy OriginalClass Test");
-    }
-    static void dicker(){
-        int m = 2;
+    //非递归
+    static int binSearch1(int []arr, int target){
+        int minPosition = 0;
+        int maxPosition = arr.length - 1;
+        int mid;
+        while (minPosition <= maxPosition){
+            mid  = (maxPosition - minPosition)/2 + minPosition;
+
+            if(target == arr[mid]){
+                return mid;
+            }else if (target < arr[mid]){
+                maxPosition = mid - 1;
+            }else if(target > arr[mid]){
+                minPosition = mid + 1;
+            }
+            return Integer.MIN_VALUE;
+        }
+
+        return Integer.MIN_VALUE;
     }
 
-    public void PackorUnpackTest(){
-        Integer I = 10;
-        Long L = 42L;
-        Double D = 32.0;
-        double d = 32;
-        int i = I;
-        boolean TorF = (I == i);
-        System.out.println("result:" + TorF);
+
+    //递归
+    static int binSearch2(int []arr, int target, int begin, int end){
+        if(begin >= end){
+            return Integer.MIN_VALUE;
+        }
+
+        int mid = (end - begin)/2 + begin;
+        if(target == arr[mid]){
+            return mid;
+        }else if(target > arr[mid]){
+            binSearch2(arr, target, mid + 1, end);
+        }else if(target < arr[mid]){
+            binSearch2(arr, target, begin, mid-1);
+        }
+        return Integer.MIN_VALUE;
+    }
+
+
+    public  static boolean flag;
+
+
+    public static void main(String []args){
+
+
+        System.out.println(flag);
+
+
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class MyThread implements Runnable{
     public MyThread(){
