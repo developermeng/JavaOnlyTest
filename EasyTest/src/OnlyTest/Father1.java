@@ -52,7 +52,11 @@ public class Father1 {
     public static void main(String []args){
 
 
-        System.out.println(flag);
+        String st = "321442";
+        char []arrChar = st.toCharArray();
+
+
+
 
 
 

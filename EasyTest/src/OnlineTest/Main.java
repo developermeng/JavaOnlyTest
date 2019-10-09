@@ -2,98 +2,65 @@ package OnlineTest;
 import java.util.*;
 
 
+public class Main {
+    public static class ThreadPrinter implements Runnable {
+        private String name;
+        private Object prev;
+        private Object self;
 
-abstract class test1{
-    test1(){
-        System.out.println("test1");
-    }
-
-    void print(){
-        System.out.println("OOP");
-    }
-}
-
-class sonOftest1 extends test1{
-    sonOftest1(){
-        super();
-    }
-}
-
-
-public class Main{
-
-    public boolean flag;
-
-    public class JiClass implements Runnable {
-        public Main t;
-
-        public JiClass(Main t) {
-            this.t = t;
+        private ThreadPrinter(String name, Object prev, Object self) {
+            this.name = name;
+            this.prev = prev;
+            this.self = self;
         }
 
         @Override
         public void run() {
-            int i = 1;  //本线程打印奇数,则从1开始
-            while (i < 100) {
-                //两个线程的锁的对象只能是同一个object
-                synchronized (t) {
-                    if (!t.flag) {
-                        System.out.println("-----" + i);
+            int count = 1;
+            while (count > 0) {// 多线程并发，不能用if，必须使用whil循环
+                synchronized (prev) { // 先获取 prev 锁
+                    synchronized (self) {// 再获取 self 锁
+                        System.out.print(name);//打印
+                        count--;
 
-                        i += 2;
-                        t.flag = true;
-                        t.notify();
-
-                    } else {
-                        try {
-                            t.wait();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                        self.notifyAll();// 唤醒其他线程竞争self锁，注意此时self锁并未立即释放。
                     }
+                    //此时执行完self的同步块，这时self锁才释放。
+                    try {
+                        prev.wait(); // 立即释放 prev锁，当前线程休眠，等待唤醒
 
+/**
+ * JVM会在wait()对象锁的线程中随机选取一线程，赋予其对象锁，唤醒线程，继续执行。
+ */
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
     }
 
-
-    public class OuClass implements Runnable {
-        public Main t;
-
-        public OuClass(Main t) {
-            this.t = t;
-        }
-
-        @Override
-        public void run() {
-            int i = 2;//本线程打印偶数,则从2开始
-            while (i <= 100)
-                //两个线程的锁的对象只能是同一个object
-                synchronized (t) {
-                    if (t.flag) {
-                        System.out.println("-----------" + i);
-                        i += 2;
-                        t.flag = false;
-                        t.notify();
-
-                    } else {
-                        try {
-                            t.wait();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-        }
-    }
+    public static void main(String[] args) throws Exception {
+        Scanner cin = new Scanner(System.in);
+        String sc = cin.nextLine();
 
 
-    public static void main(String[] args) {
-        Main tt = new Main();
-        JiClass jiClass = tt.new JiClass(tt);
-        OuClass ouClass = tt.new OuClass(tt);
-        new Thread(jiClass).start();
-        new Thread(ouClass).start();
+        Object a = new Object();
+        Object b = new Object();
+        Object c = new Object();
+        ThreadPrinter pa = new ThreadPrinter(sc + "_A", c, a);
+        ThreadPrinter pb = new ThreadPrinter("_B", a, b);
+        ThreadPrinter pc = new ThreadPrinter("_C", b, c);
+
+        new Thread(pa).start();
+        Thread.sleep(1);//保证初始ABC的启动顺序
+        new Thread(pb).start();
+        Thread.sleep(1);
+        new Thread(pc).start();
+        Thread.sleep(1);
     }
 }
+
+
+
